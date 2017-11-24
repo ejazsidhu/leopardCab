@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="e1482d19-1b44-47c5-96b7-1607b31cbcb6" ChangeDateTime="11/24/2017 09:12:09">
+    <Property Name="ElementName" Value="[dbo].[Driver].[CabName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Driver]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CabNUMBER" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3e46f507-22e9-43ac-ac43-e241c725908e" ChangeDateTime="11/24/2017 09:12:17">
+    <Property Name="ElementName" Value="[dbo].[Driver].[CabNUMBER]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Driver]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CabNumber" />
+  </Operation>
+</Operations>
