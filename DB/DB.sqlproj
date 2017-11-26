@@ -57,5 +57,18 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\tables\User.sql" />
+    <Build Include="dbo\tables\Driver.sql" />
+    <Build Include="dbo\tables\Ride.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="DB.refactorlog" />
   </ItemGroup>
 </Project>
