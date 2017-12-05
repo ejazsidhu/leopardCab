@@ -25,8 +25,8 @@ namespace LepardCab.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Driver> Drivers { get; set; }
         public virtual DbSet<Ride> Rides { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Driver> Drivers { get; set; }
     }
 }
