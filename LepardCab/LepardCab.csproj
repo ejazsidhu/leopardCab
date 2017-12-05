@@ -241,13 +241,67 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\all.css" />
     <Content Include="Content\bootstrap-luman.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\24-7.png" />
+    <Content Include="images\247-1.png" />
+    <Content Include="images\a-rix_splash_reg.png" />
+    <Content Include="images\AAEAAQAAAAAAAAf7AAAAJDg3MmFkOTdkLWUzNWUtNDFjZi05YzJlLThhN2VmM2M1MWQyZg.png" />
+    <Content Include="images\android-app.png" />
+    <Content Include="images\app-store-badge.png" />
+    <Content Include="images\Business.png" />
+    <Content Include="images\c6791a485a18bea4697fdaadd908c37c.jpg" />
+    <Content Include="images\Cab-Booking-App-features.jpg" />
+    <Content Include="images\cabby4.jpg" />
+    <Content Include="images\cal.png" />
+    <Content Include="images\call.png" />
+    <Content Include="images\car-hire-booking-online.jpg" />
+    <Content Include="images\car-rental %281%29.jpg" />
+    <Content Include="images\car-rental.jpg" />
+    <Content Include="images\Customize_ Loading….html" />
+    <Content Include="images\Customize_ Loading…_files\admin.css" />
+    <Content Include="images\Customize_ Loading…_files\icon.png" />
+    <Content Include="images\Customize_ Loading…_files\imgareaselect.css" />
+    <Content Include="images\Customize_ Loading…_files\learn.css" />
+    <Content Include="images\Customize_ Loading…_files\mediaelementplayer.min.css" />
+    <Content Include="images\Customize_ Loading…_files\saved_resource.html" />
+    <Content Include="images\Customize_ Loading…_files\wp-mediaelement.min.css" />
+    <Content Include="images\economy.png" />
+    <Content Include="images\Google_play.svg.png" />
+    <Content Include="images\gs-contact-image-contact-us-1900x1200.jpeg" />
+    <Content Include="images\images.jpg" />
+    <Content Include="images\meter-2.png" />
+    <Content Include="images\meter.jpg" />
+    <Content Include="images\nav.png" />
+    <Content Include="images\navigation.jpg" />
+    <Content Include="images\offers.jpg" />
+    <Content Include="images\phone.jpg" />
+    <Content Include="images\quick_response_monitoring.jpg" />
+    <Content Include="images\rent-1.png" />
+    <Content Include="images\signup-page.png" />
+    <Content Include="images\signup.jpg" />
+    <Content Include="images\SIGNUP_BANNER_EN.png" />
+    <Content Include="images\slider1.jpg" />
+    <Content Include="images\smart-phone-app.png" />
+    <Content Include="images\smartp-1.png" />
+    <Content Include="images\smartphone.jpg" />
+    <Content Include="images\taxi-services-500x500.jpg" />
+    <Content Include="images\Taxi.jpg" />
+    <Content Include="images\toyota-hiace.png" />
+    <Content Include="images\tra.png" />
+    <Content Include="images\Tracking children.jpg" />
+    <Content Include="images\unnamed.png" />
+    <Content Include="images\^5DA363250B66C4B1181F2E2DF262C71F99306E1A7AA5C910DA^pimgpsh_fullsize_distr.png" />
+    <Content Include="images\^BEB5BBF7D1E545BE5FD61A40FFFA6FF472E2535E65683F9A32^pimgpsh_fullsize_distr.png" />
     <Content Include="Models\LaperdCab.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LaperdCab.edmx</DependentUpon>
@@ -270,6 +324,17 @@
     <Content Include="Models\LaperdCab.edmx.diagram">
       <DependentUpon>LaperdCab.edmx</DependentUpon>
     </Content>
+    <Content Include="images\Customize_ Loading…_files\learn.js.download" />
+    <Content Include="images\Customize_ Loading…_files\load-scripts%281%29.php" />
+    <Content Include="images\Customize_ Loading…_files\load-scripts.php" />
+    <Content Include="images\Customize_ Loading…_files\load-styles.php" />
+    <Content Include="images\Customize_ Loading…_files\siteorigin-panels-25.min.js.download" />
+    <Content Include="images\Customize_ Loading…_files\wp-emoji-release.min.js.download" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -322,6 +387,8 @@
     <Content Include="Views\Admin\AllUser.cshtml" />
     <Content Include="Views\Admin\CreateUser.cshtml" />
     <Content Include="Views\Admin\EditUser.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
