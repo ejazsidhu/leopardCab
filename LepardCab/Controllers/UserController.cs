@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LepardCab.Models.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,11 @@ namespace LepardCab.Controllers
     {
         // GET: User
         public ActionResult Index()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(LoginDTO login)
         {
             return View();
         }
@@ -40,6 +46,11 @@ namespace LepardCab.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult SignupOptions()
+        {
+            return View();
         }
 
         // GET: User/Edit/5
