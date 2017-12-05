@@ -1,0 +1,521 @@
+/*.button{
+	margin: 20px;
+}
+a{
+	font-size: 20px;
+	border:solid 1px;
+	padding: 5px 10px;
+	text-decoration: none;
+	color: yellow;
+}
+a::before{
+    padding-right: 10px;
+    font-family: "FontAwesome"
+}
+a::before{
+    content: "\f023";
+}*/
+.back{
+	background-image: url(img/offers.jpg);
+}
+body{
+	background-color: black;
+}
+.top{
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.top .left , .top .right{
+	display: inline-block;
+}
+.top .left p , .top .left i{
+	color: #fffbce;
+}
+.top .left p , .top .left a{
+	display: inline-block;
+}
+.top .left i{
+	padding-left: 20px;
+}
+.top .left a{
+	cursor: pointer;
+	color: #fff049;
+}
+.top .left a:hover{
+	color: #2969bc;
+}
+.top .right{
+	float: right;
+}
+.top .right a{
+	display: inline-block;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: yellow;
+	border:solid 1px;
+	border-color: yellow;
+	border-radius: 5px;
+	padding: 5px 10px;
+	margin-top: -5px;
+}
+.top .right a:hover{
+	background-color: yellow;
+	color: black;
+	font-weight: 600;
+} 
+.navbar-default{
+	text-transform: uppercase;
+	background-color:yellow;
+	font-weight: 600;
+	border: none;
+	border-radius: 0px;
+	padding-bottom: 10px;
+	height: 20px;
+}
+.navbar-default .navbar-brand{
+	color: black;
+	margin-left: 90px;
+}
+.navbar-default .navbar-brand:hover{
+	color: black;
+}
+.navbar-nav{
+	margin-right: 75px;
+}
+.navbar-default .navbar-nav>li>a{
+	color: black;
+    
+} 
+.navbar-default .navbar-nav>li>a:hover{
+	color: red;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+	background-color: black;
+	color: yellow
+}
+.dropdown-menu{
+	background-color: yellow;
+}
+.dropdown-menu>li>a:hover{
+	background-color: black;
+	color: yellow;
+}
+.cab-booking .banner img{
+	width: 100%;
+	margin-top: -20px;
+}
+.cab-booking .carousel{
+	height: 250px;
+}
+.cab-booking .carousel-inner{
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	color: yellow;
+}
+.cab-booking .carousel-inner h2{
+	text-transform: uppercase;
+	font-weight: 600;
+}
+.cab-booking .carousel-inner h3{
+	color: red;
+}
+.cab-booking .carousel-inner p{
+	color: white;
+}
+.cab-booking .stress{
+	text-align: center;
+	margin-bottom: 50px;
+}
+.cab-booking .stress h1{
+	color: red;
+	margin-bottom: 10px;
+}
+.cab-booking .stress p{
+	color: white;
+}
+.cab-booking .stress p a{
+	color: yellow;
+}
+.cab-booking .stress p a:hover{
+	color: blue;
+}
+.cab-booking .contact{
+	background-color: yellow;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+.cab-booking .contact .top-text{
+	padding-bottom: 20px;
+}
+.cab-booking .contact h1{
+	text-align: center;
+	color: red;
+	font-weight: 600;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+.cab-booking .contact p{
+	text-align: center;
+	color: black;
+}
+.cab-booking .contact img{
+	height: 200px;
+}
+.cab-booking .contact .text{
+	position: relative;
+}
+.cab-booking .contact .text:hover:after{
+	content:"";
+ 	position:absolute;
+ 	left:25%;
+ 	right:25%;
+ 	bottom:0;
+ 	border:1px solid white;
+ 	margin-bottom: 30px;
+}
+.cab-booking .contact .text-bottom{
+	color: white;
+	position: absolute;
+	top:60%;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+}
+.cab-booking .contact .text-bottom a{
+	background-color: red;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 5px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+.cab-booking .contact h3{
+	text-transform: uppercase;
+	font-weight: 600;
+}
+.cab-booking .app{
+	background-color: yellow;
+}
+.cab-booking .app img{
+	background-color: transparent;
+}
+h1{
+	text-transform: uppercase;
+	margin-bottom: 40px;
+	color: yellow;
+}
+.page-image img{
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+.signin form a{
+	font-size: 20px;
+	font-weight: 600;
+	background-color: black;
+	color: yellow;
+	text-transform: uppercase;
+	padding:5px 15px;
+	border-radius: 5px;
+	border:solid 1px;
+	border-color: yellow;
+}
+.signin form a:hover{
+	background-color: yellow;
+	color: black;
+}
+.signup .imgg img{
+	margin-top: 200px;
+}
+.signup .btn{
+	margin-bottom: 20px;
+}
+.signup .btn a{
+	background-color: black;
+	border-color: yellow;
+	border:solid 1px;
+	font-size: 25px;
+	color: yellow;
+	text-transform: uppercase;
+	border-radius: 5px;
+	font-weight: 600;
+	padding: 10px 15px;
+	text-decoration: none;
+}
+.signup .btn a:hover{
+	background-color: yellow;
+	color: black;
+}
+.frm .facbk a{
+	background-color: darkblue;
+	border:solid 1px;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+}
+.frm .facbk a:hover{
+	background-color: white;
+	color: #00157f;
+}
+.frm{
+	margin-top: 20px;
+	text-align: center;
+}
+.frm p{
+	color: red;
+	padding-bottom: 10px;
+}
+.frm a{
+	font-size: 20px;
+	text-decoration: none;
+	font-weight: 600;
+}
+.frm i{
+	padding-right: 10px;
+	font-size: 30px;
+}
+.frm .or{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+form .input-group{
+	margin-left: 50px;
+	margin-bottom: 15px;
+	border:solid 1px;
+	border-color: rgb(160,160,161);
+	border-radius: 2px;
+	width:80%;
+}
+.click{
+	font-weight: 600;
+	color: grey;
+	font-size: 14px;
+}
+.click span a , .frm .terms span > span a{
+	color: black;
+	border:none;
+	padding: 0px;
+	color: yellow;
+	font-size: 16px;
+	text-decoration: none;
+	font-weight: 600;
+}
+.click span a:hover , .frm .terms span > span a:hover{
+	text-decoration: underline;
+}
+.frm .btn a{
+	background-color: black;
+	border:solid 1px;
+	padding: 10px 20px 10px 20px;
+	color: yellow;
+	border-radius: 5px;
+	border-color: yellow;
+}
+.frm .btn a:hover{
+	background-color: yellow;
+	color: black;
+}
+.frm .terms{
+	margin-top: 10px;
+	font-weight: 600;
+}
+.services .online-booking{
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+.services .cab , .services .rent{
+	display: inline-block;
+}
+.services .cab a , .services .rent a{
+	border:solid 1px;
+	padding: 10px 30px;
+	color: yellow;
+	text-decoration: none;
+	text-transform: uppercase;
+	background-color: black;
+	border-radius: 5px;
+	font-weight: 600;
+}
+.services .cab a:hover , .services .rent a:hover{
+	background-color: yellow;
+	color: black;
+	border-color:yellow;
+}
+.services .imgg img{
+	margin-bottom: 40px;
+	width: 100%;
+}
+.services .img-circle{
+	border:solid 2px yellow;
+	border-radius: 130px;
+	width: 250px;
+	height: 250px;
+}
+.services h3{
+	color: red;
+	font-size: 20px;
+}
+.contacts{
+	margin-bottom: 110px;
+}
+.contacts .fontss i{
+	color: black;
+	font-size: 40px;
+	border:solid 1px;
+	border-radius: 10px;
+	width: 110px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background-color: yellow;
+	text-align: center;
+}
+.contacts .fontss .text , .contacts .fontss i{
+	display: inline-block;
+}
+.contacts .fontss .text{
+	margin-left: 20px;
+}
+.contacts .fontss .text span{
+	font-size: 20px;
+	color: yellow;
+}
+.contacts .fontss .text a{
+	display: block;
+	color: red;
+	text-decoration: none;
+}
+.about .choose{
+	background-color: yellow;
+	color: black;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.about .choose h2{
+	color: black;
+	text-align: center;
+	margin-bottom: 50px;
+	font-weight: 600;
+	text-decoration: underline;
+}
+.about .choose p{
+	color: red;
+	font-size: 16px;
+	margin-top: 25px;
+}
+.about .choose .row{
+	margin-bottom: 20px;
+}
+.about .choose .img-circle{
+	border:solid 2px red;
+	border-radius: 100px;
+	width: 120px;
+	height: 120px;
+}
+.footer{
+	background-image: url(../img/offers.jpg);
+}
+.footer-inner{
+	background: rgba(255, 233, 0, 0.8);
+}
+.upper-footer .footer1 img{
+	display: inline-block;
+	width:150px;
+	height: 40px;
+	padding-left: 20px;
+}
+.upper-footer .footer1 p{
+	font-size: 18px;
+	font-weight: 600;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	color: black;
+}
+.upper-footer .footer2{
+	padding-top: 20px;
+	font-weight: 600;
+}
+.upper-footer .footer2 ul{
+	padding-left: 0px;
+}
+.upper-footer .footer2 ul li{
+	list-style: none;
+}
+.upper-footer .footer2 ul li a{
+	color: black;
+	text-decoration: none;
+}
+.upper-footer .footer3{
+	display: inline-block;
+	font-size: 30px;
+	margin-top: 40px;
+}
+.upper-footer .footer3{
+	text-align: center;
+}
+.upper-footer .footer3 a{
+	text-decoration: none;
+	margin: 5px;
+}
+.upper-footer .footer3 a i{
+	border: solid 1px;
+	width: 55px;
+	height: 55px;
+	text-align: center;
+	padding-top: 10px;
+	border-radius: 40px;
+	background-color: black;
+	border-color: black;
+	color: yellow;
+}
+.upper-footer .footer3 a .fa-twitter:hover{
+	background-color: #35FDD9;
+	color: white;
+	border-color: #35FDD9;
+}
+.upper-footer .footer3 a .fa-facebook:hover{
+	background-color: #3B79F5;
+	color: white;
+	border-color: #3B79F5;
+}
+.upper-footer .footer3 a .fa-instagram:hover{
+	background-color: #F56B3B;
+	color: white;
+	border-color: #F56B3B;
+}
+.footer .upper-footer{
+	position: relative;
+	margin-bottom: 20px;
+	padding-bottom: 30px;
+	padding-top: 30px;
+}
+.footer .upper-footer:after{
+    border-bottom:1px solid;
+    border-color: black;
+    width:100%;
+    position:absolute;
+    top:100%;
+    content:"";
+    left:0;
+    right:0;
+    margin:0 auto;
+    color:#808080;
+}
+.lower-footer p , .privacy{
+	display: inline-block;
+	font-weight: 600;
+}
+.lower-footer .privacy{
+	float: right;
+}
+.lower-footer .privacy a{
+	padding-right:  50px;
+	text-decoration: none;
+	color: black;
+}
+.lower-footer .privacy a:hover{
+	color: #2969bc;
+}

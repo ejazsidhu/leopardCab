@@ -1,31 +1,106 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+﻿<main id="main" class="cab-booking">
+    <div class="banner">
+        <img src="~/images/slider1.jpg"  alt="banner" class="img-responsive">
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3>How it Works</h3>
+                    <h2>Get Started</h2>
+                    <p>Open site and download Leopard CAB, and sign in to account. From there you can easily book a ride in minutes whenever you need one, and whenever you going.</p>
+                </div>
+                <div class="item">
+                    <h3>How it Works</h3>
+                    <h2>Let's Go!</h2>
+                    <p>Our Gps automatically pick your location. Select your car type and then choose your drop off location select ride now.</p>
+                </div>
+                <div class="item">
+                    <h3>How it Works</h3>
+                    <h2>pay the way you want</h2>
+                    <p>We accept only cash when complete your ride pay it.</p>
+                </div>
+                <div class="item">
+                    <h3>How it Works</h3>
+                    <h2>Rate your Ride</h2>
+                    <p>Once your ride has completed. We encourage you to give feedback us. This can only make you next ride better.</p>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">
+                </span> <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="calculator">
+        </div>
+        <div class="stress">
+            <h1>Stress-Free Transportation</h1>
+            <p>Leopard Cab has a number of cars so you can easily book your ride and ride in a comfortable car.</p>
+            <p>Call our Leopard CAB center at <a href="#">0335-4378428</a></p>
+        </div>
+        <div class="contact">
+            <div class="container">
+                <div class="top-text">
+                    <h1>LEOPARD CAB & RENT A CAR SERVICE</h1>
+                    <p>Leopard CAB & Rent A Car is one of the popular transportation companies of Pakistan providing reliable, comfortable and efficient public transport service with more than 50 Taxi cabs all over Lahore.</p>
+                    <p>We are commitedto provide a convenient way to get around the city, ensuring a comfortable and safe journey for you.</p>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="text">
+                            <img src="~/images/call.png"  alt="img" class="img-responsive">
+                            <div class="text-bottom">
+                                <a href="#">book on call</a>
+                                <h3>0335-4378428</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="text">
+                            <img src="~/images/Taxi.jpg"  alt="img" class="img-responsive">
+                            <div class="text-bottom">
+                                <a href="Services.html">read more</a>
+                                <h3>our services</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="text">
+                            <img src="~/images/gs-contact-image-contact-us-1900x1200.jpeg"  alt="img" class="img-responsive">
+                            <div class="text-bottom">
+                                <a href="#">read more</a>
+                                <h3>contact us</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="app">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img src="~/images/smart-phone-app.png"  alt="img" class="img-responsive">
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Download SmartPhone Apps</h3>
+                        <p>Use our mobile Apps or call UAN:(042) 111-222-333</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="~/images/android-app.png"  alt="img" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+</main>
