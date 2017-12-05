@@ -27,6 +27,7 @@ namespace LepardCab.Models
         public string Address { get; set; }
         public string CabNumber { get; set; }
         public string CNIC { get; set; }
+        public string LicenseNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ride> Rides { get; set; }

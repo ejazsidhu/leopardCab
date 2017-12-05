@@ -26,7 +26,7 @@ namespace LepardCab.Models
         public string EndLatitute { get; set; }
         public string EndLongitute { get; set; }
     
-        public virtual Driver Driver { get; set; }
         public virtual User User { get; set; }
+        public virtual Driver Driver { get; set; }
     }
 }

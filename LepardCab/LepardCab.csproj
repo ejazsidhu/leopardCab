@@ -210,6 +210,9 @@
     <Compile Include="Models\Driver.cs">
       <DependentUpon>LaperdCab.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTOs\DriverDTO.cs" />
+    <Compile Include="Models\DTOs\RideDTO.cs" />
+    <Compile Include="Models\DTOs\UserDTO.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LaperdCab.Context.cs">
       <AutoGen>True</AutoGen>
