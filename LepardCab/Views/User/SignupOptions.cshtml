@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "SignupOptions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="signup">
+    <div class="container">
+        <div class="btn">
+            <a href="@Url.Action("Create","Driver")">Signup Driver</a>
+            <a href="@Url.Action("Create","User")">Signup Customer</a>
+        </div>
+        <div class="page-image">
+            <img src="~/images/signup-page.png" alt="" class="img-responsive">
+        </div>
+    </div>
+</main>
+
