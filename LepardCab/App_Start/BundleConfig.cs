@@ -25,6 +25,8 @@ namespace LepardCab
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-luman.css",
+                      "~/Content/font-awesome.css",
+                      "~/Content/all.css",
                       "~/Content/site.css"));
         }
     }
