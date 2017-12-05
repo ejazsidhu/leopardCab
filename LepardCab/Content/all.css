@@ -364,7 +364,7 @@ form .input-group{
 }
 .contacts .fontss i{
 	color: black;
-	font-size: 40px;
+	font-size: 30px;
 	border:solid 1px;
 	border-radius: 10px;
 	width: 110px;
@@ -380,7 +380,7 @@ form .input-group{
 	margin-left: 20px;
 }
 .contacts .fontss .text span{
-	font-size: 20px;
+	font-size: 15px;
 	color: yellow;
 }
 .contacts .fontss .text a{
