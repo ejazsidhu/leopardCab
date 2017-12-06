@@ -1,4 +1,5 @@
-﻿using LepardCab.Models.DTOs;
+﻿using LepardCab.Models;
+using LepardCab.Models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace LepardCab.Controllers
 {
     public class UserController : Controller
     {
+        private LaperdCabDbContaxt db;
+        public UserController()
+        {
+            db = new LaperdCabDbContaxt();
+        }
         // GET: User
         public ActionResult Index()
         {
@@ -17,7 +23,43 @@ namespace LepardCab.Controllers
         [HttpPost]
         public ActionResult Login(LoginDTO login)
         {
-            return View();
+            var login_details = db.Users.ToList();
+            if (login_details != null)
+            {
+                foreach (var item in login_details)
+                {
+                    if (login.Contact.Equals("10000") && login.Password.Equals("admin"))
+                    {
+
+                        Session["login"] = "login";
+
+                        return RedirectToAction("index", "admin");
+
+
+                    }
+                    else if (login.Contact.Equals(item.Contact) && login.Password.Equals(item.Password))
+                    {
+                        var user = db.Users.SingleOrDefault(u => u.Id == item.Id);
+                        if (user != null)
+                        {
+                            Session["UserLogin"] = user;
+                            return RedirectToAction("index", "home");
+
+                        }
+
+                    }
+                    else
+                    {
+                        TempData["NoUser"] = "User Does not Exist";
+                    }
+
+
+                }
+
+            }
+
+            return RedirectToAction("index", "User");
+
         }
 
         // GET: User/Details/5
@@ -95,6 +137,13 @@ namespace LepardCab.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Logout()
+        {
+            Session["login"] = null;
+
+            return RedirectToAction("Index","Home");
         }
     }
 }

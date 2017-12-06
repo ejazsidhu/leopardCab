@@ -17,15 +17,37 @@ namespace LepardCab.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            if (Session["login"]==null)
+            {
+                TempData["NoUser"] = "You are not authorised for this route";
+                return RedirectToAction("index", "User");
+            }
+            else
+            {
+                return View();
+
+
+            }
         }
 
 
         #region UserCrud
         public ActionResult AllUser()
         {
-            var user = db.Users.ToList();
-            return View(user);
+
+            if (Session["login"] == null)
+            {
+                TempData["NoUser"] = "You are not authorised for this route";
+                return RedirectToAction("index", "User");
+            }
+            else
+            {
+                var user = db.Users.ToList();
+                return View(user);
+
+
+            }
+            
         }
 
         #endregion
@@ -33,16 +55,38 @@ namespace LepardCab.Controllers
         #region Driver
         public ActionResult AllDrivers()
         {
-            var drivers = db.Drivers.ToList();
-            return View(drivers);
+            if (Session["login"] == null)
+            {
+                TempData["NoUser"] = "You are not authorised for this route";
+                return RedirectToAction("index", "User");
+            }
+            else
+            {
+                var drivers = db.Drivers.ToList();
+                return View(drivers);
+
+
+            }
+          
         }
         #endregion
 
         #region Rides
         public ActionResult AllRides()
         {
-            var ride = db.Rides.ToList();
-            return View(ride);
+            if (Session["login"] == null)
+            {
+                TempData["NoUser"] = "You are not authorised for this route";
+                return RedirectToAction("index", "User");
+            }
+            else
+            {
+                var ride = db.Rides.ToList();
+                return View(ride);
+
+
+            }
+            
         }
         #endregion
 
