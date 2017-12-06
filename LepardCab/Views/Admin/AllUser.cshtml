@@ -8,7 +8,21 @@
 <h2>AllUser</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateUser")
+    @if (TempData["UserMessages"] != null)
+    {
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> @TempData["UserMessages"].ToString().
+        </div>
+    }
+    @if (TempData["error"] != null)
+    {
+
+        <div class="alert alert-warning">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Warning!</strong> @TempData["error"].ToString().
+        </div>
+    }
 </p>
 <table class="table"  style="color:white;">
     <tr>
@@ -48,9 +62,9 @@
             @Html.DisplayFor(modelItem => item.Password)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditUser", new { id=item.Id }) |
-          @*  @Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
-            @Html.ActionLink("Delete", "DeleteUser", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", "User", new { id = item.Id }, null) |
+            @* @Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+            @Html.ActionLink("Delete", "Delete", "User", new { id = item.Id }, new { onclick = "return confirm('Are you sure you wish to delete this article?');" })
         </td>
     </tr>
 }

@@ -398,6 +398,7 @@
     <Content Include="Views\Admin\AllDrivers.cshtml" />
     <Content Include="Views\Admin\AllRides.cshtml" />
     <Content Include="Views\Driver\Edit.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
