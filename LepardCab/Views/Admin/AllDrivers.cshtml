@@ -8,7 +8,21 @@
 <h2>AllDrivers</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (TempData["UserMessages"] != null)
+    {
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> @TempData["UserMessages"].ToString().
+        </div>
+    }
+    @if (TempData["error"] != null)
+    {
+
+        <div class="alert alert-warning">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Warning!</strong> @TempData["error"].ToString().
+        </div>
+    }
 </p>
 <table class="table"  style="color:white">
     <tr>
@@ -60,9 +74,9 @@
             @Html.DisplayFor(modelItem => item.LicenseNumber)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Edit", "Edit","Driver", new { id=item.Id },null) |
            @* @Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Delete", "Delete","Driver", new { id=item.Id }, new { onclick = "return confirm('Are you sure you wish to delete this article?');" })
         </td>
     </tr>
 }

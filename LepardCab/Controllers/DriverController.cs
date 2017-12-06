@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LepardCab.Models;
+using LepardCab.Models.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,11 @@ namespace LepardCab.Controllers
 {
     public class DriverController : Controller
     {
+        private LaperdCabDbContaxt db;
+        public DriverController()
+        {
+            db = new LaperdCabDbContaxt();
+        }
         // GET: Driver
         public ActionResult Index()
         {
@@ -28,46 +35,94 @@ namespace LepardCab.Controllers
 
         // POST: Driver/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(DriverDTO dto)
         {
+            var driver = new Driver();
+
+            driver.Contact = dto.Contact;
+            driver.CNIC = dto.CNIC;
+            driver.Email = dto.Email;
+            driver.Address = dto.Address;
+            driver.Name = dto.Name;
+            driver.LicenseNumber = dto.LicenseNumber;
+            driver.CabNumber = dto.CabNumber;
+
             try
             {
-                // TODO: Add insert logic here
+                db.Drivers.Add(driver);
+                db.SaveChanges();
+                if (driver.Id != 0)
+                {
+                    TempData["UserMessages"] = "Driver Succesfully Created.";
+                    return RedirectToAction("Index", "Home");
 
-                return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    TempData["error"] = "Driver Succesfully Created." + "Error Message" ;
+                    return RedirectToAction("Create", "Driver");
+
+                }
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                TempData["error"] = "Driver Succesfully Created."+"Error Message"+e;
+
             }
+            return RedirectToAction("Create", "Driver");
+
         }
 
         // GET: Driver/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var driver = db.Drivers.First(d=>d.Id==id);
+            return View(driver);
         }
 
         // POST: Driver/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Driver dto)
         {
+
+            var driver = db.Drivers.Find(id);
+
+            
             try
             {
-                // TODO: Add update logic here
+                driver.Contact = dto.Contact;
+                driver.CNIC = dto.CNIC;
+                driver.Email = dto.Email;
+                driver.Address = dto.Address;
+                driver.Name = dto.Name;
+                driver.LicenseNumber = dto.LicenseNumber;
+                driver.CabNumber = dto.CabNumber;
+                db.SaveChanges();
 
-                return RedirectToAction("Index");
+                TempData["UserMessages"] = "User is updated";
+
+                return RedirectToAction("AllDrivers","Admin");
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                TempData["error"] = "User is not saved Error Message: "+e;
+
+                return RedirectToAction("AllDrivers", "Admin");
             }
         }
 
         // GET: Driver/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var driver = db.Drivers.Find(id);
+            db.Drivers.Remove(driver);
+            db.SaveChanges();
+
+
+            TempData["UserMessages"] = "User is Deleted";
+
+            return RedirectToAction("AllDrivers", "Admin");
         }
 
         // POST: Driver/Delete/5
