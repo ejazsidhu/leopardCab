@@ -1,10 +1,29 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+
+
 }
 
 <main id="main" class="cab-booking">
+
+    @if (TempData["UserMessages"] != null)
+    {
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> @TempData["UserMessages"].ToString().
+        </div>
+    }
+    @if (TempData["error"] != null)
+    {
+
+        <div class="alert alert-warning">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Warning!</strong> @TempData["error"].ToString().
+        </div>
+    }
+     
     <div class="banner">
-        <img src="~/images/slider1.jpg"  alt="banner" class="img-responsive">
+        <img src="~/images/slider1.jpg" alt="banner" class="img-responsive">
     </div>
     <div class="">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -62,7 +81,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="text">
-                            <img src="~/images/call.png"  alt="img" class="img-responsive">
+                            <img src="~/images/call.png" alt="img" class="img-responsive">
                             <div class="text-bottom">
                                 <a href="#">book on call</a>
                                 <h3>0335-4378428</h3>
@@ -71,7 +90,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="text">
-                            <img src="~/images/Taxi.jpg"  alt="img" class="img-responsive">
+                            <img src="~/images/Taxi.jpg" alt="img" class="img-responsive">
                             <div class="text-bottom">
                                 <a href="Services.html">read more</a>
                                 <h3>our services</h3>
@@ -80,7 +99,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="text">
-                            <img src="~/images/gs-contact-image-contact-us-1900x1200.jpeg"  alt="img" class="img-responsive">
+                            <img src="~/images/gs-contact-image-contact-us-1900x1200.jpeg" alt="img" class="img-responsive">
                             <div class="text-bottom">
                                 <a href="#">read more</a>
                                 <h3>contact us</h3>
@@ -101,7 +120,7 @@
                         <p>Use our mobile Apps or call UAN:(042) 111-222-333</p>
                     </div>
                     <div class="col-sm-4">
-                        <img src="~/images/android-app.png"  alt="img" class="img-responsive">
+                        <img src="~/images/android-app.png" alt="img" class="img-responsive">
                     </div>
                 </div>
             </div>
