@@ -76,18 +76,40 @@ namespace LepardCab.Controllers
 
         // POST: User/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(UserDTO dto)
         {
+            var user = new User();
+            user.Name = dto.Name;
+            user.CNIC = dto.CNIC;
+            user.Email = dto.Email;
+            user.Password = dto.Password;
+            user.Contact = dto.Contact;
+
+
             try
             {
-                // TODO: Add insert logic here
+                db.Users.Add(user);
+                db.SaveChanges();
+                if (user.Id != 0)
+                {
+                    TempData["UserMessages"] = "User  Succesfully Created.";
+                    return RedirectToAction("Index", "Home");
 
-                return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    TempData["error"] = "User Succesfully Created." + "Error Message";
+                    return RedirectToAction("Create", "User");
+
+                }
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                TempData["error"] = "Driver Succesfully Created." + "Error Message" + e;
+
             }
+            return RedirectToAction("Create", "User");
         }
 
         public ActionResult SignupOptions()
@@ -98,29 +120,49 @@ namespace LepardCab.Controllers
         // GET: User/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var user = db.Users.Find(id);
+            return View(user);
         }
 
         // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, User dto)
         {
+            var user = db.Users.Find(id);
+
             try
             {
-                // TODO: Add update logic here
+                user.Name = dto.Name;
+                user.CNIC = dto.CNIC;
+                user.Email = dto.Email;
+                user.Password = dto.Password;
+                user.Contact = dto.Contact;
+                db.SaveChanges();
 
-                return RedirectToAction("Index");
+
+                TempData["UserMessages"] = "User is updated";
+
+                return RedirectToAction("AllUser", "Admin");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                TempData["error"] = "User is not saved Error Message: " + e;
+
+                return RedirectToAction("AllUser", "Admin");
             }
         }
 
         // GET: User/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var user = db.Users.Find(id);
+            db.Users.Remove(user);
+            db.SaveChanges();
+
+
+            TempData["UserMessages"] = "User is Deleted";
+
+            return RedirectToAction("AllUser", "Admin");
         }
 
         // POST: User/Delete/5
