@@ -24,8 +24,14 @@
                     <li>@Html.ActionLink("Users", "AllUser", "Admin")</li>
                     <li>@Html.ActionLink("Drivers", "AllDrivers", "Admin")</li>
                     <li>@Html.ActionLink("Rides Detail", "AllRides", "Admin")</li>
+                   
                 </ul>
-               @* @Html.Partial("_LoginPartial")*@
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="pull-right">@Html.ActionLink("SignOut", "Logout", "User")</li>
+                </ul>
+                @* @Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>
@@ -33,7 +39,8 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy;@DateTime.Now.Year- LEOPARD CAB ALL RIGHTS RESERVED</p></footer>
+            <p>&copy;@DateTime.Now.Year- LEOPARD CAB ALL RIGHTS RESERVED</p>
+        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
