@@ -12,8 +12,12 @@ namespace LepardCab.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class C__RefactorLog
+    public partial class Rent
     {
-        public System.Guid OperationKey { get; set; }
+        public int Id { get; set; }
+        public decimal RentTime { get; set; }
+        public string Contact { get; set; }
+        public decimal Fare { get; set; }
+        public string Car { get; set; }
     }
 }
