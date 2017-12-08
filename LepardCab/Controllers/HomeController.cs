@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LepardCab.Models;
+using LepardCab.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,11 @@ namespace LepardCab.Controllers
 {
     public class HomeController : Controller
     {
+        private LaperdCabDbContaxt db;
+        public HomeController()
+        {
+            db = new LaperdCabDbContaxt();
+        }
         public ActionResult Index()
         {
             return View();
@@ -28,6 +35,24 @@ namespace LepardCab.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult FareCalculater()
+        {
+            var drivers = db.Drivers.ToList();
+            var viewModel = new RideViewModel
+            {
+                Ride = new Ride(),
+                DriverList = drivers
+            };
+            return View(viewModel);
+            
+        }
+
+        [HttpPost]
+        public ActionResult FareCalculater(Ride ride)
+        {
             return View();
         }
     }

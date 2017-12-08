@@ -5,6 +5,12 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="LaperdCabModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Driver">
           <Key>
             <PropertyRef Name="Id" />
@@ -29,10 +35,16 @@
           <Property Name="RideStart" Type="nvarchar(max)" Nullable="false" />
           <Property Name="RideEnd" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Fare" Type="decimal" Precision="18" Scale="4" Nullable="false" />
-          <Property Name="StartLatitute" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="StartLongitute" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="EndLatitute" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="EndLongitute" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -70,8 +82,10 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="LaperdCabModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Driver" EntityType="Self.Driver" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ride" EntityType="Self.Ride" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Ride_Driver" Association="Self.FK_Ride_Driver">
             <End Role="Driver" EntitySet="Driver" />
@@ -86,34 +100,18 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LaperdCabModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Ride">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="DriverId" Type="Int32" Nullable="false" />
-          <Property Name="RideStart" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RideEnd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Fare" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
-          <Property Name="StartLatitute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="StartLongitute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EndLatitute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EndLongitute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="LaperdCabModel.FK_Ride_User" FromRole="Ride" ToRole="User" />
-          <NavigationProperty Name="Driver" Relationship="LaperdCabModel.FK_Ride_Driver" FromRole="Ride" ToRole="Driver" />
-        </EntityType>
         <EntityContainer Name="LaperdCabDbContaxt" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Rides" EntityType="Self.Ride" />
           <EntitySet Name="Users" EntityType="LaperdCabModel.User" />
-          <AssociationSet Name="FK_Ride_User" Association="LaperdCabModel.FK_Ride_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Ride" EntitySet="Rides" />
-          </AssociationSet>
           <EntitySet Name="Drivers" EntityType="LaperdCabModel.Driver" />
+          <EntitySet Name="C__RefactorLog" EntityType="LaperdCabModel.C__RefactorLog" />
+          <EntitySet Name="sysdiagrams" EntityType="LaperdCabModel.sysdiagram" />
+          <EntitySet Name="Rides" EntityType="LaperdCabModel.Ride" />
           <AssociationSet Name="FK_Ride_Driver" Association="LaperdCabModel.FK_Ride_Driver">
             <End Role="Driver" EntitySet="Drivers" />
+            <End Role="Ride" EntitySet="Rides" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ride_User" Association="LaperdCabModel.FK_Ride_User">
+            <End Role="User" EntitySet="Users" />
             <End Role="Ride" EntitySet="Rides" />
           </AssociationSet>
         </EntityContainer>
@@ -129,18 +127,6 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Rides" Relationship="LaperdCabModel.FK_Ride_User" FromRole="User" ToRole="Ride" />
         </EntityType>
-        <Association Name="FK_Ride_User">
-          <End Type="LaperdCabModel.User" Role="User" Multiplicity="1" />
-          <End Type="LaperdCabModel.Ride" Role="Ride" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Ride">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Driver">
           <Key>
             <PropertyRef Name="Id" />
@@ -155,6 +141,36 @@
           <Property Name="LicenseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Rides" Relationship="LaperdCabModel.FK_Ride_Driver" FromRole="Driver" ToRole="Ride" />
         </EntityType>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Ride">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="DriverId" Type="Int32" Nullable="false" />
+          <Property Name="RideStart" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RideEnd" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fare" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <NavigationProperty Name="Driver" Relationship="LaperdCabModel.FK_Ride_Driver" FromRole="Ride" ToRole="Driver" />
+          <NavigationProperty Name="User" Relationship="LaperdCabModel.FK_Ride_User" FromRole="Ride" ToRole="User" />
+        </EntityType>
         <Association Name="FK_Ride_Driver">
           <End Type="LaperdCabModel.Driver" Role="Driver" Multiplicity="1" />
           <End Type="LaperdCabModel.Ride" Role="Ride" Multiplicity="*" />
@@ -167,29 +183,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Ride_User">
+          <End Type="LaperdCabModel.User" Role="User" Multiplicity="1" />
+          <End Type="LaperdCabModel.Ride" Role="Ride" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ride">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LaperdCabModelStoreContainer" CdmEntityContainer="LaperdCabDbContaxt">
-          <EntitySetMapping Name="Rides">
-            <EntityTypeMapping TypeName="LaperdCabModel.Ride">
-              <MappingFragment StoreEntitySet="Ride">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="DriverId" ColumnName="DriverId" />
-                <ScalarProperty Name="RideStart" ColumnName="RideStart" />
-                <ScalarProperty Name="RideEnd" ColumnName="RideEnd" />
-                <ScalarProperty Name="Fare" ColumnName="Fare" />
-                <ScalarProperty Name="StartLatitute" ColumnName="StartLatitute" />
-                <ScalarProperty Name="StartLongitute" ColumnName="StartLongitute" />
-                <ScalarProperty Name="EndLatitute" ColumnName="EndLatitute" />
-                <ScalarProperty Name="EndLongitute" ColumnName="EndLongitute" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="LaperdCabModel.User">
               <MappingFragment StoreEntitySet="User">
@@ -212,6 +223,37 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Contact" ColumnName="Contact" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="LaperdCabModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LaperdCabModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rides">
+            <EntityTypeMapping TypeName="LaperdCabModel.Ride">
+              <MappingFragment StoreEntitySet="Ride">
+                <ScalarProperty Name="Fare" ColumnName="Fare" />
+                <ScalarProperty Name="RideEnd" ColumnName="RideEnd" />
+                <ScalarProperty Name="RideStart" ColumnName="RideStart" />
+                <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
