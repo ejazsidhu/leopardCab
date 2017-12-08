@@ -1,5 +1,6 @@
 ﻿using LepardCab.Models;
 using LepardCab.Models.DTOs;
+using LepardCab.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,8 +43,8 @@ namespace LepardCab.Controllers
                         var user = db.Users.SingleOrDefault(u => u.Id == item.Id);
                         if (user != null)
                         {
-                            Session["UserLogin"] = user;
-                            return RedirectToAction("index", "home");
+                            Session["loginUser"] = user;
+                            return RedirectToAction("FareCalculater", "home");
 
                         }
 
@@ -93,20 +94,21 @@ namespace LepardCab.Controllers
                 if (user.Id != 0)
                 {
                     TempData["UserMessages"] = "User  Succesfully Created.";
-                    return RedirectToAction("Index", "Home");
+                    Session["loginUser"] = user;
+                    return RedirectToAction("FareCalculater", "home");
 
 
                 }
                 else
                 {
-                    TempData["error"] = "User Succesfully Created." + "Error Message";
+                    TempData["error"] = "User Succesfully  not created Created." + "Error Message";
                     return RedirectToAction("Create", "User");
 
                 }
             }
             catch (Exception e)
             {
-                TempData["error"] = "Driver Succesfully Created." + "Error Message" + e;
+                TempData["error"] = "User Not Succesfully Created." + "Error Message" + e;
 
             }
             return RedirectToAction("Create", "User");

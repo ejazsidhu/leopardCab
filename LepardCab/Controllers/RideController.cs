@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LepardCab.Models;
+using LepardCab.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,21 @@ namespace LepardCab.Controllers
 {
     public class RideController : Controller
     {
+        private LaperdCabDbContaxt db;
+        public RideController()
+        {
+            db = new LaperdCabDbContaxt();
+        }
         // GET: Ride
         public ActionResult Index()
         {
-            return View();
+            var drivers = db.Drivers.ToList();
+            var viewModel = new RideViewModel
+            {
+                Ride = new Ride(),
+                DriverList = drivers
+            };
+            return View(viewModel);
         }
 
         // GET: Ride/Details/5
@@ -28,11 +41,15 @@ namespace LepardCab.Controllers
 
         // POST: Ride/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection ride)
         {
+
+            var r = new Ride();
+            //r.DriverId = ride.DriverId;
+            
             try
             {
-                // TODO: Add insert logic here
+                
 
                 return RedirectToAction("Index");
             }

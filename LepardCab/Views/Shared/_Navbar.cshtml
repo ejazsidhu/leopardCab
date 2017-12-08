@@ -1,6 +1,6 @@
 ﻿
 @{ 
-    var user = Session["login"];
+    var user = Session["loginUser"] as LepardCab.Models.User;
 }
 
 <header id="header" class="header">
@@ -21,6 +21,7 @@
                 }
                 else
                 {
+                    <a href="#"> <i class="fa fa-user">&nbsp;&nbsp;@user.Name</i></a>
 
                     <a href="@Url.Action("Logout","User")">Signout</a>
 
