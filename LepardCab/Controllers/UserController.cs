@@ -80,31 +80,24 @@ namespace LepardCab.Controllers
         public ActionResult Create(UserDTO dto)
         {
             var user = new User();
-            user.Name = dto.Name;
-            user.CNIC = dto.CNIC;
-            user.Email = dto.Email;
-            user.Password = dto.Password;
-            user.Contact = dto.Contact;
+          
 
 
             try
             {
+                user.Name = dto.Name;
+                user.CNIC = dto.CNIC;
+                user.Email = dto.Email;
+                user.Password = dto.Password;
+                user.Contact = dto.Contact;
                 db.Users.Add(user);
                 db.SaveChanges();
-                if (user.Id != 0)
-                {
-                    TempData["UserMessages"] = "User  Succesfully Created.";
-                    Session["loginUser"] = user;
-                    return RedirectToAction("FareCalculater", "home");
+                 TempData["UserMessages"] = "User  Succesfully Created.";
+                   // Session["loginUser"] = user;
+                 return RedirectToAction("FareCalculater", "home");
 
-
-                }
-                else
-                {
-                    TempData["error"] = "User Succesfully  not created Created." + "Error Message";
-                    return RedirectToAction("Create", "User");
-
-                }
+                
+                
             }
             catch (Exception e)
             {

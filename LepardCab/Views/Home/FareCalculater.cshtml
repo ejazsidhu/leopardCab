@@ -1,69 +1,65 @@
-﻿@model LepardCab.ViewModels.RideViewModel
+﻿
 
 <style>
-
-    label{
-        color:yellow;
-        font-size:15px;
+    label {
+        color: yellow;
+        font-size: 15px;
     }
 </style>
 
 <div class="banner">
+
+    @if (TempData["UserMessages"] != null)
+    {
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> @TempData["UserMessages"].ToString().
+        </div>
+    }
+    @if (TempData["error"] != null)
+    {
+
+        <div class="alert alert-warning">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Warning!</strong> @TempData["error"].ToString().
+        </div>
+    }
     <img src="~/images/slider1.jpg" alt="banner" class="img-responsive">
 </div>
 
-@if (Session["loginUser"] != null)
 {
-    <h1>Fare Calculater</h1>
-        <div class="row">
-            <div class="col-md-7">
+<h1>Fare Calculater</h1>
+<div class="row">
 
 
+    <div class="row">
+        <div class="col-md-7">
+
+
+            <div>
                 <div>
-                    <div>
-                        Travel From : <input id="travelfrom" type="text" name="name" value="Gulshan-e-Ravi, Lahore, Punjab, Pakistan" />
-                        To : <input id="travelto" type="text" name="name" value="lahore zoo" />
-                        <input type="button" value="Get Route" onclick="GetRoute()" />
-
-                    </div>
-                    <br />
-                    <div>
-                        <div id="dvDistance" style="color:white;font-size:20px">
-                        </div>
-                    </div>
+                    Travel From : <input id="travelfrom" type="text" name="name" value="Gulshan-e-Ravi, Lahore, Punjab, Pakistan" />
+                    To : <input id="travelto" type="text" name="name" value="lahore zoo" />
+                    <input type="button" value="Get Route" onclick="GetRoute()" />
 
                 </div>
-
-                <div id="dvMap" style="min-height:500px"></div>
-
-            </div>
-            <h1>Ride Details</h1>
-
-            <div class="col-md-5" id="rideForm">
-                @using (Html.BeginForm(new { id="form"}))
-                {
-                    <label>Available Drivers</label>
-                    @Html.DropDownListFor(m => m.Ride.DriverId, new SelectList(Model.DriverList, "Id", "Name"), "Select Driver", new { @class = "form-control" })
-                   
-                    <label>Ride Start Point</label>
-                    @Html.TextBoxFor(m=>m.Ride.RideStart,new { @class="form-control",id="rideStart"})
-
-                    <label>Ride End Point</label>
-                    @Html.TextBoxFor(m => m.Ride.RideEnd, new { @class = "form-control", id="rideEnd" })
-
-
-                    <label>Ride Fare</label>
-                    @Html.TextBoxFor(m => m.Ride.Fare, new { @class = "form-control",id="fare" })
-
-
-                    <button id="btnSave" class="btn btn-success" type="submit">Ride Now</button>
-
-
-                }
+                <br />
+                <div>
+                    <div id="dvDistance" style="color:white;font-size:20px">
+                    </div>
+                </div>
 
             </div>
+
+            <div id="dvMap" style="min-height:500px"></div>
+
         </div>
-}
+
+
+
+    </div>
+</div>
+
 
 
 
@@ -132,7 +128,7 @@
                     var distance = response.rows[0].elements[0].distance.text;
                     var distanceValue = response.rows[0].elements[0].distance.value;
                     var duration = response.rows[0].elements[0].duration.value;
-                    var fare =(distanceValue / 1000 * 30 + 50).toFixed(2);
+                    var fare = (distanceValue / 1000 * 30 + 50).toFixed(2);
                     $("#fare").val(fare);
 
 
@@ -141,7 +137,7 @@
                     dvDistance.innerHTML = "";
                     dvDistance.innerHTML += "Distance: " + distance + "<br />";
                     dvDistance.innerHTML += "Time:" + duration + " min" + "<br />";
-                     dvDistance.innerHTML += "Total fare:" + fare + " PKR";
+                    dvDistance.innerHTML += "Total fare:" + fare + " PKR";
 
 
                 } else {

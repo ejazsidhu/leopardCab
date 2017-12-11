@@ -9,3 +9,5 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+insert into [User](Name,CNIC,Contact,Email,Password) 
+VALUES('admin','7865443','1234','admin@test.com','admin');

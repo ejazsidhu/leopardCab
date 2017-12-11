@@ -40,13 +40,13 @@ namespace LepardCab.Controllers
 
         public ActionResult FareCalculater()
         {
-            var drivers = db.Drivers.ToList();
-            var viewModel = new RideViewModel
-            {
-                Ride = new Ride(),
-                DriverList = drivers
-            };
-            return View(viewModel);
+            //var drivers = db.Drivers.ToList();
+            //var viewModel = new RideViewModel
+            //{
+            //    Ride = new Ride(),
+            //    DriverList = drivers
+            //};
+            return View();
             
         }
 

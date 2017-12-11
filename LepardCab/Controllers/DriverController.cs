@@ -30,7 +30,16 @@ namespace LepardCab.Controllers
         // GET: Driver/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["login"] == null)
+            {
+                TempData["NoUser"] = "You are not authorised for this route";
+                return RedirectToAction("index", "User");
+            }
+            else
+            {
+                return View();
+
+            }
         }
 
         // POST: Driver/Create

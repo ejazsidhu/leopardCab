@@ -1,13 +1,9 @@
 ﻿CREATE TABLE [dbo].[User]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Name] VARBINARY(50) NOT NULL, 
+    [Name] NVARCHAR(50) NOT NULL, 
     [CNIC] NVARCHAR(50) NOT NULL, 
     [Contact] NVARCHAR(50) NOT NULL, 
     [Email] NVARCHAR(50) NOT NULL, 
-    [Password] NVARCHAR(50) NOT NULL, 
-    CONSTRAINT [CK_User_Name] UNIQUE(Name), 
-    CONSTRAINT [CK_User_CINC] UNIQUE(CNIC), 
-    CONSTRAINT [CK_User_Coctact] UNIQUE(Contact), 
-    CONSTRAINT [CK_User_Email] UNIQUE(Email)
+    [Password] NVARCHAR(50) NOT NULL 
 )
