@@ -10,10 +10,14 @@ namespace LepardCab.Models.DTOs
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Name is required")]
+        [RegularExpression("(^[a-zA-Z]*$)", ErrorMessage = "Only Alphabets  here ")]
         public string Name { get; set; }
+        [RegularExpression("(^[0-9]*$)", ErrorMessage ="Only numbers here Spaces are not allowed ")]
         [Required(ErrorMessage = "CNIC is required")]
         public string CNIC { get; set; }
         [Required(ErrorMessage = "Contact is required")]
+        [RegularExpression("(^[0-9]*$)", ErrorMessage = "Only numbers here ")]
+
         public string Contact { get; set; }
         [Required(ErrorMessage = "Name is required")]
         [EmailAddress(ErrorMessage ="Enter a valid Email Address")]
