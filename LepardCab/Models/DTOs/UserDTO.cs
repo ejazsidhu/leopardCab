@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace LepardCab.Models.DTOs
 {
@@ -15,6 +16,8 @@ namespace LepardCab.Models.DTOs
         [RegularExpression("(^[0-9]*$)", ErrorMessage ="Only numbers here Spaces are not allowed ")]
         [Required(ErrorMessage = "CNIC is required")]
         public string CNIC { get; set; }
+        [Remote("IsAlreadySigned", "User", HttpMethod = "POST", ErrorMessage = "Contact already exists in database.")]
+
         [Required(ErrorMessage = "Contact is required")]
         [RegularExpression("(^[0-9]*$)", ErrorMessage = "Only numbers here ")]
 
@@ -26,7 +29,7 @@ namespace LepardCab.Models.DTOs
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Confirmation Password is required.")]
-        [Compare("Password", ErrorMessage = "Password and Confirmation Password must match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Password and Confirmation Password must match.")]
         public string ConfirmPassword { get; set; }
     }
 }

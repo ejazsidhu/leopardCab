@@ -36,6 +36,9 @@ namespace LepardCab.Controllers
         // GET: Ride/Create
         public ActionResult Create()
         {
+            var duration=Session["duration"];
+            var distance=Session["distance"];
+            var fare=Session["fare"];
             return View();
         }
 

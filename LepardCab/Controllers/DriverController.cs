@@ -18,7 +18,8 @@ namespace LepardCab.Controllers
         // GET: Driver
         public ActionResult Index()
         {
-            return View();
+            var driver = db.Drivers.ToList();
+            return View(driver);
         }
 
         // GET: Driver/Details/5
@@ -63,7 +64,7 @@ namespace LepardCab.Controllers
                 if (driver.Id != 0)
                 {
                     TempData["UserMessages"] = "Driver Succesfully Created.";
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "driver");
 
 
                 }

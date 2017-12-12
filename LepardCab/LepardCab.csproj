@@ -411,10 +411,12 @@
     <Content Include="Views\Home\FareCalculater.cshtml" />
     <Content Include="Views\Rent\Index.cshtml" />
     <Content Include="Views\Rent\Create.cshtml" />
+    <Content Include="Views\Ride\Create.cshtml" />
+    <Content Include="Views\Home\Ride.cshtml" />
+    <Content Include="Views\Driver\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Ride\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

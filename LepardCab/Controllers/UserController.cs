@@ -29,7 +29,7 @@ namespace LepardCab.Controllers
             {
                 foreach (var item in login_details)
                 {
-                    if (login.Contact.Equals("10000") && login.Password.Equals("admin"))
+                    if (login.Contact.Equals("1234") && login.Password.Equals("admin"))
                     {
 
                         Session["login"] = "login";
@@ -178,9 +178,40 @@ namespace LepardCab.Controllers
 
         public ActionResult Logout()
         {
-            Session["login"] = null;
+            Session["loginUser"] = null;
 
             return RedirectToAction("Index","Home");
+        }
+        [HttpPost]
+        public JsonResult IsAlreadySigned([Bind(Prefix = "Contact")]string UserEmailId)
+        {
+
+            return Json(IsUserAvailable(UserEmailId));
+
+        }
+        public bool IsUserAvailable(string userName)
+        {
+            // Assume these details coming from database  
+            List<User> RegisterUsers = db.Users.ToList();
+
+            var RegEmailId = db.Users.FirstOrDefault(u => u.Contact.Equals(userName));
+            //(from u in RegisterUsers
+            //                  where u.Username.ToUpper() == userName.ToUpper()
+            //                  select new { userName }).FirstOrDefault();
+
+            bool status;
+            if (RegEmailId != null)
+            {
+                //Already registered  
+                status = false;
+            }
+            else
+            {
+                //Available to use  
+                status = true;
+            }
+
+            return status;
         }
     }
 }
