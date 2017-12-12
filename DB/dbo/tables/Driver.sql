@@ -6,5 +6,6 @@
     [Email] NVARCHAR(50) NOT NULL, 
     [Address] NVARCHAR(50) NOT NULL, 
     [CabNumber] NVARCHAR(50) NOT NULL, 
-    [CNIC] NVARCHAR(50) NOT NULL 
+    [CNIC] NVARCHAR(50) NOT NULL, 
+    [LicenseNumber] NCHAR(10) NOT NULL 
 )

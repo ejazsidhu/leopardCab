@@ -24,6 +24,11 @@ namespace LepardCab.Controllers
             return View();
         }
 
+        public ActionResult Ride(FormCollection form)
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

@@ -1,4 +1,4 @@
-﻿
+﻿@model LepardCab.Models.Ride
 
 <style>
     label {
@@ -33,22 +33,27 @@
 
 
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-12">
 
 
             <div>
                 <div>
                     Travel From : <input id="travelfrom" type="text" name="name" value="Gulshan-e-Ravi, Lahore, Punjab, Pakistan" />
                     To : <input id="travelto" type="text" name="name" value="lahore zoo" />
-                    <input type="button" value="Get Route" onclick="GetRoute()" />
+                    <input type="button" value="Get Route" onclick="GetRoute()"  />
 
                 </div>
                 <br />
                 <div>
                     <div id="dvDistance" style="color:white;font-size:20px">
+
                     </div>
+                    <a href="@Url.Action("Create","ride")" onclick="return submitForm()" ; class="btn btn-success btn-md">Ride Now</a>
+
                 </div>
 
+                <div id="rideNow">
+                </div>
             </div>
 
             <div id="dvMap" style="min-height:500px"></div>
@@ -72,6 +77,12 @@
     <!-- code for example 1 -->
     <script>
 
+        $(document).ready(function () {
+            $('#rideNow').hide();
+           // submitForm();
+
+        });
+
         var source, destination;
         var directionsDisplay;
         var directionsService = new google.maps.DirectionsService();
@@ -86,6 +97,7 @@
         google.maps.event.addDomListener(window, 'load', function () {
             new google.maps.places.SearchBox(document.getElementById('travelfrom'));
 
+
             new google.maps.places.SearchBox(document.getElementById('travelto'));
             directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
         });
@@ -94,8 +106,10 @@
 
             directionsDisplay.setMap(map);
 
+
             source = document.getElementById("travelfrom").value;
             destination = document.getElementById("travelto").value;
+          
             $("#rideStart").val(source);
             $("#rideEnd").val(destination);
 
@@ -138,6 +152,43 @@
                     dvDistance.innerHTML += "Distance: " + distance + "<br />";
                     dvDistance.innerHTML += "Time:" + duration + " min" + "<br />";
                     dvDistance.innerHTML += "Total fare:" + fare + " PKR";
+                    // location.href="../ride/create?val="+duration
+                    @*@Session["duration"]=duration;
+                    @Session["distance"]=distance;
+                    @Session["fare"]=fare;*@
+
+                    //$('#rideNow').show();
+                    //submitForm();
+
+                    function submitForm() {
+
+                        var model = {
+
+                            duration:duration,
+                        fare:fare,
+                        destination:destination,
+                        source:source,
+                        };
+                       
+
+                       
+                        jQuery.ajax({
+                            type: "POST",
+                            url: "@Url.Action("ride")",
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify(model),
+                            success: function (data) {
+                                alert(data);
+                            },
+                            failure: function (errMsg) {
+                                alert(errMsg);
+                            }
+                        });
+                    }
+
+
+
 
 
                 } else {
@@ -146,29 +197,6 @@
             });
         }
 
-
-        $('#btnSave').click(function (e) {
-            e.preventDefault(); // <------------------ stop default behaviour of button
-            var element = this;
-            $.ajax({
-                url: "/Home/FareCalculater",
-                type: "POST",
-                dataType: "text",
-                traditional: true,
-                contentType: "application/text; charset=utf-8",
-                success: function (data) {
-                    if (data.status == "Success") {
-                        alert("Done");
-                        $(element).closest("form").submit(); //<------------ submit form
-                    } else {
-                        alert("Error occurs on the Database level!");
-                    }
-                },
-                error: function () {
-                    alert("An error has occured!!!");
-                }
-            });
-        });
 
     </script>
     <!-- end code for example 1 -->
