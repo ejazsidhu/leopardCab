@@ -1,4 +1,5 @@
-﻿@model LepardCab.Models.DTOs.RideDTO
+﻿@model LepardCab.ViewModels.RideViewModel
+    
 
 @{
     ViewBag.Title = "Create";
@@ -7,15 +8,62 @@
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("CreateRide","Ride")) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>RideDTO</h4>
+        <h4>Ride</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group" hidden>
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control"  } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ride.DriverId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Ride.DriverId,new SelectList(Model.DriverList,"Id","Name"), new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.Ride.DriverId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ride.RideStart, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ride.RideStart, new { htmlAttributes = new { @class = "form-control" ,id="rideStart" } })
+                @Html.ValidationMessageFor(model => model.Ride.RideStart, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ride.RideEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ride.RideEnd, new { htmlAttributes = new { @class = "form-control", id = "rideEnd" } })
+                @Html.ValidationMessageFor(model => model.Ride.RideEnd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ride.Fare, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ride.Fare, new { htmlAttributes = new { @class = "form-control", id = "fare" } })
+                @Html.ValidationMessageFor(model => model.Ride.Fare, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -28,6 +76,25 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+@section scripts{
+
+    <script>
+        $(function () {
+
+            debugger;
+            var source = JSON.parse(localStorage.getItem("source"));
+            var destination = JSON.parse(localStorage.getItem("destination"));
+            var fare = JSON.parse(localStorage.getItem("fare"));
+
+            $('#rideStart').val(source);
+            $('#rideEnd').val(destination);
+            $('#fare').val(fare);
+
+        });
+    </script>
+    
+    
+    
+    
+    }

@@ -24,6 +24,15 @@
           <Property Name="CNIC" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LicenseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="DriverId" Type="int" />
+          <Property Name="Feedback" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Rent">
           <Key>
             <PropertyRef Name="Id" />
@@ -45,67 +54,26 @@
           <Property Name="RideStart" Type="nvarchar(max)" Nullable="false" />
           <Property Name="RideEnd" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Fare" Type="decimal" Precision="18" Scale="4" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CNIC" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Ride_Driver">
-          <End Role="Driver" Type="Self.Driver" Multiplicity="1" />
-          <End Role="Ride" Type="Self.Ride" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Driver">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Ride">
-              <PropertyRef Name="DriverId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Ride_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Ride" Type="Self.Ride" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Ride">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="LaperdCabModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Driver" EntityType="Self.Driver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rent" EntityType="Self.Rent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ride" EntityType="Self.Ride" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Ride_Driver" Association="Self.FK_Ride_Driver">
-            <End Role="Driver" EntitySet="Driver" />
-            <End Role="Ride" EntitySet="Ride" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ride_User" Association="Self.FK_Ride_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Ride" EntitySet="Ride" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -125,6 +93,7 @@
           </AssociationSet>
           <EntitySet Name="Rents" EntityType="LaperdCabModel.Rent" />
           <EntitySet Name="sysdiagrams" EntityType="LaperdCabModel.sysdiagram" />
+          <EntitySet Name="Feedbacks" EntityType="LaperdCabModel.Feedback" />
         </EntityContainer>
         <EntityType Name="Driver">
           <Key>
@@ -153,13 +122,14 @@
           <Property Name="Fare" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
           <NavigationProperty Name="Driver" Relationship="LaperdCabModel.FK_Ride_Driver" FromRole="Ride" ToRole="Driver" />
           <NavigationProperty Name="User" Relationship="LaperdCabModel.FK_Ride_User" FromRole="Ride" ToRole="User" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CNIC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -210,6 +180,15 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="DriverId" Type="Int32" />
+          <Property Name="Feedback1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -233,6 +212,7 @@
           <EntitySetMapping Name="Rides">
             <EntityTypeMapping TypeName="LaperdCabModel.Ride">
               <MappingFragment StoreEntitySet="Ride">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Fare" ColumnName="Fare" />
                 <ScalarProperty Name="RideEnd" ColumnName="RideEnd" />
                 <ScalarProperty Name="RideStart" ColumnName="RideStart" />
@@ -266,14 +246,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="LaperdCabModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="LaperdCabModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="Feedback1" ColumnName="Feedback" />
+                <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

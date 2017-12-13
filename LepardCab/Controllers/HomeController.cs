@@ -24,7 +24,7 @@ namespace LepardCab.Controllers
             return View();
         }
 
-        public ActionResult Ride(FormCollection form)
+        public ActionResult Ride()
         {
             return View();
         }
