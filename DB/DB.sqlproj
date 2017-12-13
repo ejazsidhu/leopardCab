@@ -68,6 +68,7 @@
     <Build Include="dbo\tables\Driver.sql" />
     <Build Include="dbo\tables\Ride.sql" />
     <Build Include="dbo\tables\Rent.sql" />
+    <Build Include="dbo\tables\Feedback.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="DB.refactorlog" />

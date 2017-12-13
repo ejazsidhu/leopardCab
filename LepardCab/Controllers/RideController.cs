@@ -36,29 +36,83 @@ namespace LepardCab.Controllers
         // GET: Ride/Create
         public ActionResult Create()
         {
-            var duration=Session["duration"];
-            var distance=Session["distance"];
-            var fare=Session["fare"];
-            return View();
+            var user = new User();
+            if (Session["loginUser"] == null)
+            {
+                TempData["error"] = "PleaseLogin first";
+                return RedirectToAction("index", "Home");
+            }
+            else
+            {
+                user = Session["loginUSer"] as User;
+                var userInDb = db.Users.First(u => u.Id == user.Id);
+                var drivers = db.Drivers.ToList();
+                var viewModel = new RideViewModel
+                {
+                    Ride = new Ride(),
+                    DriverList=drivers
+                };
+                return View(viewModel);
+
+            }
+
+
         }
 
         // POST: Ride/Create
         [HttpPost]
-        public ActionResult Create(FormCollection ride)
+        public ActionResult CreateRide(FormCollection ride)
         {
+            User user = Session["loginUser"] as User;
+            var userInDb = db.Users.First(u => u.Id == user.Id);
+
+            var start = ride["Ride.RideStart"];
+            var end = ride["Ride.RideEnd"];
+            var fare = ride["Ride.Fare"];
+            var driver = ride["Ride.DriverId"];
+
 
             var r = new Ride();
-            //r.DriverId = ride.DriverId;
+          
             
             try
             {
+                r.UserId = userInDb.Id;
+                r.DriverId = Int32.Parse(driver);
+                r.RideStart = start;
+                r.RideEnd = end;
+                r.Fare = Convert.ToDecimal(fare);
+                r.Date = DateTime.Now;
+                db.Rides.Add(r);
+                db.SaveChanges();
+
+                TempData["UserMessages"] = "Rider is register";
                 
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             catch
             {
-                return View();
+                TempData["error"] = "Rider is register";
+
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public ActionResult MyRides()
+        {
+            if (Session["loginUser"] != null)
+            {
+                var user = Session["loginUser"] as User;
+                var rides = db.Rides.Where(o=>o.UserId==user.Id).ToList();
+                return View(rides);
+
+            }
+            else
+            {
+                return RedirectToAction("Index","Home");
+
             }
         }
 

@@ -12,6 +12,7 @@
         <AssociationConnector Association="LaperdCabModel.FK_Ride_User" />
         <EntityTypeShape EntityType="LaperdCabModel.Rent" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="LaperdCabModel.sysdiagram" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LaperdCabModel.Feedback" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

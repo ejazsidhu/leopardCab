@@ -30,5 +30,6 @@ namespace LepardCab.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Rent> Rents { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
     }
 }

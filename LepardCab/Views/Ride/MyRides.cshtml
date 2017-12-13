@@ -1,0 +1,74 @@
+﻿@model IEnumerable<LepardCab.Models.Ride>
+
+@{
+    ViewBag.Title = "MyRides";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Rides</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+@if (Session["loginUser"] == null)
+{
+
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Warning!</strong> No Rides Register.
+    </div>
+
+}
+<table class="table">
+    <tr>
+        <th>
+             Date
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>*@
+        <th>
+            Driver
+        </th>
+        <th>
+            Ride Start
+        </th>
+        <th>
+            Ride End
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fare)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @string.Format("{0:MM/dd/yyyy}" ,item.Date)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Driver.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RideStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RideEnd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fare)
+        </td>
+        <td>
+            @Html.ActionLink("Complete", "Edit", new { id=item.Id }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+            @Html.ActionLink("Cancled", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
