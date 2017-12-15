@@ -40,6 +40,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Fare)
         </th>
+        <th>Status</th>
         <th></th>
     </tr>
 
@@ -64,11 +65,53 @@
             @Html.DisplayFor(modelItem => item.Fare)
         </td>
         <td>
-            @Html.ActionLink("Complete", "Edit", new { id=item.Id }) |
-            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
-            @Html.ActionLink("Cancled", "Delete", new { id=item.Id })
+           @* @Html.DisplayFor(modelItem => item.Status,new { id="status"})*@
+
+            
+                <span id="status">@item.Status </span>            
+</td>
+        <td >
+            <div id="action">
+
+                @Html.ActionLink("Complete", "FeedBack", new { id = item.Id }) |
+                @Html.ActionLink("Cancled", "FeedBackDelete", new { id = item.Id })
+            </div>
+           
+
+            
+           
         </td>
     </tr>
 }
 
 </table>
+@section Scripts{
+
+@*<script>
+
+
+
+    $(function () {
+       // alert("All good");
+       // $("#action").hide();
+
+        var status = $("#status").text();
+        console.log(status);
+
+       if (status == "Continue") {
+           $("#action").show();
+       }
+       else {
+           $("#action").hide();
+
+       }
+
+
+
+
+
+    });
+</script>*@
+    }
+
+

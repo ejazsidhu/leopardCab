@@ -5,14 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f128335f7f74459e82eca0e1094d1134" Name="Diagram1">
-        <EntityTypeShape EntityType="LaperdCabModel.Driver" Width="1.5" PointX="3.125" PointY="0.5" />
-        <EntityTypeShape EntityType="LaperdCabModel.Ride" Width="1.5" PointX="5.375" PointY="0.5" />
-        <EntityTypeShape EntityType="LaperdCabModel.User" Width="1.5" PointX="3.125" PointY="4.625" />
+        <EntityTypeShape EntityType="LaperdCabModel.Driver" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LaperdCabModel.Feedback" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="LaperdCabModel.Rent" Width="1.5" PointX="0.75" PointY="8.875" />
+        <EntityTypeShape EntityType="LaperdCabModel.Ride" Width="1.5" PointX="6" PointY="4.75" />
+        <EntityTypeShape EntityType="LaperdCabModel.sysdiagram" Width="1.5" PointX="2.75" PointY="8.875" />
+        <EntityTypeShape EntityType="LaperdCabModel.User" Width="1.5" PointX="0.75" PointY="5" />
+        <AssociationConnector Association="LaperdCabModel.FK_Feedback_Driver" />
         <AssociationConnector Association="LaperdCabModel.FK_Ride_Driver" />
+        <AssociationConnector Association="LaperdCabModel.FK_Feedback_User" />
         <AssociationConnector Association="LaperdCabModel.FK_Ride_User" />
-        <EntityTypeShape EntityType="LaperdCabModel.Rent" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="LaperdCabModel.sysdiagram" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="LaperdCabModel.Feedback" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

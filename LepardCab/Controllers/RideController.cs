@@ -83,6 +83,7 @@ namespace LepardCab.Controllers
                 r.RideEnd = end;
                 r.Fare = Convert.ToDecimal(fare);
                 r.Date = DateTime.Now;
+                r.Status = "Continue";
                 db.Rides.Add(r);
                 db.SaveChanges();
 
@@ -93,7 +94,7 @@ namespace LepardCab.Controllers
             }
             catch
             {
-                TempData["error"] = "Rider is register";
+                TempData["error"] = "Rider is not register";
 
 
                 return RedirectToAction("Index", "Home");
@@ -117,47 +118,63 @@ namespace LepardCab.Controllers
         }
 
         // GET: Ride/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult FeedBack(int id)
         {
-            return View();
+            var ride = db.Rides.Where(r => r.Id == id).FirstOrDefault();
+            var viewModel = new FeedBackViewModel {
+                Ride=ride,
+                FeedBack=new Feedback()
+
+            };
+            
+            return View(viewModel);
         }
 
         // POST: Ride/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult FeedBack(FormCollection fb)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var user = Session["loginUser"] as User;
+            var rideId = Int32.Parse(fb["Ride.Id"]) ;
+            var ride = db.Rides.Where(r => r.Id == rideId).FirstOrDefault();
+            ride.Status = "Completed";            
+            var feedBack = new Feedback();
+            feedBack.UserId = user.Id;
+            feedBack.Feedback1 = fb["FeedBack.FeedBack1"];
+            db.Feedbacks.Add(feedBack);
+            db.SaveChanges();
+            TempData["UserMessages"] = "Thanks for your valuable Feedback!";
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Ride/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult FeedBackDelete(int id)
         {
-            return View();
+            var ride = db.Rides.Where(r => r.Id == id).FirstOrDefault();
+            var viewModel = new FeedBackViewModel
+            {
+                Ride = ride,
+                FeedBack = new Feedback()
+
+            };
+            return View(viewModel);
         }
 
         // POST: Ride/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult FeedBackDelete(FormCollection fb)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var user = Session["loginUser"] as User;
+            var rideId = Int32.Parse(fb["Ride.Id"]);
+            var ride = db.Rides.Where(r => r.Id == rideId).FirstOrDefault();
+            ride.Status = "Cancled";
+            var feedBack = new Feedback();
+            feedBack.UserId = user.Id;
+            feedBack.Feedback1 = fb["FeedBack.FeedBack1"];
+            db.Feedbacks.Add(feedBack);
+            db.SaveChanges();
+            TempData["UserMessages"] = "Thanks for your valuable Feedback!";
+            return RedirectToAction("Index", "Home");
         }
     }
 }
