@@ -242,6 +242,12 @@
     <Compile Include="Models\Ride.cs">
       <DependentUpon>LaperdCab.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>LaperdCab.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>LaperdCab.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>LaperdCab.tt</DependentUpon>
     </Compile>
@@ -250,6 +256,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\FeedBackViewModel.cs" />
     <Compile Include="ViewModels\RideViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -417,6 +424,8 @@
     <Content Include="Views\Driver\Index.cshtml" />
     <Content Include="Views\Ride\Create.cshtml" />
     <Content Include="Views\Ride\MyRides.cshtml" />
+    <Content Include="Views\Ride\FeedBack.cshtml" />
+    <Content Include="Views\Ride\FeedBackDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,6 +17,7 @@ namespace LepardCab.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Driver()
         {
+            this.Feedbacks = new HashSet<Feedback>();
             this.Rides = new HashSet<Ride>();
         }
     
@@ -29,6 +30,8 @@ namespace LepardCab.Models
         public string CNIC { get; set; }
         public string LicenseNumber { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Feedback> Feedbacks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ride> Rides { get; set; }
     }

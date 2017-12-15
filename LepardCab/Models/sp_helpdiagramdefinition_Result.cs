@@ -10,16 +10,10 @@
 namespace LepardCab.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Feedback
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int Id { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public Nullable<int> DriverId { get; set; }
-        public string Feedback1 { get; set; }
-    
-        public virtual Driver Driver { get; set; }
-        public virtual User User { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
