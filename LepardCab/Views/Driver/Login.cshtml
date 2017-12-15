@@ -1,7 +1,7 @@
 ﻿@model LepardCab.Models.DTOs.LoginDTO
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var message = TempData["NoUser"];
@@ -9,12 +9,9 @@
 
 
 
-@using (Html.BeginForm("Login","User")) 
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-   
 
     <main id="main" class="signin">
         @if (message != null)
@@ -29,18 +26,16 @@
                     <img src="~/images/^BEB5BBF7D1E545BE5FD61A40FFFA6FF472E2535E65683F9A32^pimgpsh_fullsize_distr.png" class="img-responsive">
                 </div>
                 <div class="col-sm-6 frm">
-                    <a href="@Url.Action("Login","Driver")"> Driver login</a>
-
-                    <h1>sign in</h1>
+                    <h1>Driver Signin</h1>
                     <form>
                         <div class="input-group input-group-lg">
-                            
-                            @Html.TextBoxFor(model => model.Contact, new { @class = "form-control", placeholder = "Mobile number" } )
+
+                            @Html.TextBoxFor(model => model.Contact, new { @class = "form-control", placeholder = "Mobile number" })
                             @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
                         </div>
                         <div class="input-group input-group-lg">
-                       
-                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password" } )
+
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Cnic" })
                             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
                         <input type="submit" value="Signin" class="btn btn-default" />
@@ -50,7 +45,6 @@
             </div>
         </div>
     </main>
-
 }
 
 

@@ -1,6 +1,7 @@
 ﻿
 @{ 
     var user = Session["loginUser"] as LepardCab.Models.User;
+    var driver = Session["loginDriver"] as LepardCab.Models.Driver;
 }
 
 <header id="header" class="header">
@@ -12,27 +13,52 @@
                 <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="#">leopardcab@gmail.com</a>
             </div>
             <div class="right">
-                <a href="@Url.Action("Create","Rent")" class="btn btn-success">Book a Car</a>
+                @if (driver == null)
+                {
+                    <a href="@Url.Action("Create","Rent")" class="btn btn-success">Book a Car</a>
+
+                }
 
 
                 @if (user == null)
                 {
-                    <a href="@Url.Action("Create","User")">Signup</a>
-                    <a href="@Url.Action("Index","User")">Signin</a>
+                    if (driver == null)
+                    {
+                        <a href="@Url.Action("Create","User")">Signup</a>
+                        <a href="@Url.Action("Index","User")">Signin</a>
+
+                    }
 
                 }
                 else
                 {
-                    <a href="#"> <i class="fa fa-user">&nbsp;&nbsp;@user.Name</i></a>
-                    <a href="@Url.Action("MyRides","Ride")">My Rides</a>
-                  
+                    if (driver == null)
+                    {
+                        <a href="#"> <i class="fa fa-user">&nbsp;&nbsp;@user.Name</i></a>
+                        <a href="@Url.Action("MyRides","Ride")">My Rides</a>
+                    }
 
-                        <a href="@Url.Action("Logout","User")">Signout</a>
+                    
 
 
-                        }
 
-</div>
+                    <a href="@Url.Action("Logout","User")">Signout</a>
+
+
+                }
+
+                @if (driver != null)
+                {
+                    <a href="#"> <i class="fa fa-car">&nbsp;&nbsp;@driver.Name</i></a>
+
+                    <a href="@Url.Action("MyJobs","Driver")">My Jobs</a>
+                
+                    <a href="@Url.Action("Logout","User")">Signout</a>
+
+
+                }
+
+            </div>
         </div>
     </div>
     <nav class="navbar navbar-default">
@@ -50,3 +76,10 @@
         </div>
     </nav>
 </header>
+
+
+
+
+
+
+

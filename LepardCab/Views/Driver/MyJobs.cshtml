@@ -1,0 +1,74 @@
+﻿@model IEnumerable<LepardCab.Models.Ride>
+
+@{
+    ViewBag.Title = "MyJobs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Jobs</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            Customer
+        </th>
+        <th>
+            Customer Contact
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.DriverId)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.RideStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RideEnd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fare)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Contact)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.DriverId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.RideStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RideEnd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fare)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Complete", "FeedBack","Driver", new { id = item.Id },null) |
+            @Html.ActionLink("Cancled", "FeedBackDelete","Driver", new { id = item.Id },null)
+
+        </td>
+    </tr>
+}
+
+</table>
