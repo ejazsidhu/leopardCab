@@ -430,6 +430,7 @@
     <Content Include="Views\Driver\MyJobs.cshtml" />
     <Content Include="Views\Driver\FeedBack.cshtml" />
     <Content Include="Views\Driver\FeedBackDelete.cshtml" />
+    <Content Include="Views\Home\FeedBackList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
