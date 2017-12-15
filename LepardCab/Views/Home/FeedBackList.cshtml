@@ -16,7 +16,7 @@ else
         <tr>
            
             <th>
-                <i class="fa fa-user-o fa-2x"></i>
+                User
             </th>
             <th>Contact</th>
             <th>
@@ -32,6 +32,7 @@ else
                 @if (item.User != null)
                 {
                     <td>
+                        <i class="fa fa-user-o"></i> &nbsp;&nbsp;
                         @Html.DisplayFor(modelItem => item.User.Name)
                        
                     </td>
@@ -45,7 +46,9 @@ else
                 }
                 else if (item.Driver != null)
                 {
+
                     <td>
+                        <i class="fa fa-car"></i> &nbsp;&nbsp;
                         @Html.DisplayFor(modelItem => item.Driver.Name)
                     </td>
                     <td>
