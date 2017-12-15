@@ -426,6 +426,10 @@
     <Content Include="Views\Ride\MyRides.cshtml" />
     <Content Include="Views\Ride\FeedBack.cshtml" />
     <Content Include="Views\Ride\FeedBackDelete.cshtml" />
+    <Content Include="Views\Driver\Login.cshtml" />
+    <Content Include="Views\Driver\MyJobs.cshtml" />
+    <Content Include="Views\Driver\FeedBack.cshtml" />
+    <Content Include="Views\Driver\FeedBackDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
