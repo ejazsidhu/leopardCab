@@ -1,0 +1,70 @@
+﻿@model IEnumerable<LepardCab.Models.Feedback>
+@{
+    ViewBag.Title = "FeedBAck";
+    Layout = "~/Views/Shared/Layouts/_Admin_layout.cshtml";
+}
+
+<div style="padding-bottom:50px"></div>
+
+@if(Model.Count()==0)
+{
+    <p style="color:red;font-size:25px"> No Feedback available</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+           
+            <th>
+                <i class="fa fa-user-o fa-2x"></i>
+            </th>
+            <th>Contact</th>
+            <th>
+                Feedback
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                @if (item.User != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Name)
+                       
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Contact)
+
+
+                    </td>
+
+
+                }
+                else if (item.Driver != null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Driver.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Driver.Contact)
+                    </td>
+                }
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Feedback1)
+                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                    </td>*@
+            </tr>
+        }
+
+    </table>
+}
+

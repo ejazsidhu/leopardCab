@@ -24,6 +24,12 @@ namespace LepardCab.Controllers
             return View();
         }
 
+        public ActionResult FeedBackList()
+        {
+            var fbList = db.Feedbacks.ToList();
+            return View(fbList);
+        }
+
         public ActionResult Ride()
         {
             return View();
